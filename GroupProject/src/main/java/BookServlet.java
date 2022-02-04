@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 
-
+import java.awt.print.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -34,11 +34,15 @@ public class BookServlet extends HttpServlet {
 	// Create new book
 	private static final String INSERT_BOOKS_SQL = "INSERT INTO bookDetails" 
 	+" (bookName, bookDesc, bookAuthor, bookLikes) VALUES " + " (?,?,?,?);";
-	// Select book by name
+	// Select book by name (used to show specific book)
 	private static final String SELECT_BOOK_BY_ID = "SELECT bookName, bookDesc, bookAuthor, bookLikes from bookDetails where bookName = ?;";
+	// Select all books by that contains search input(used for search)
+	private static final String SELECT_BOOKS_BY_NAME = "SELECT * FROM bookDetails where bookName like %?%;";
 	// Update book (including likes)
 	private static final String UPDATE_BOOKS_SQL = "UPDATE BookDetails set bookName = ?, bookDesc = ?, bookAuthor = ?, bookLikes = ? where bookName = ?;";
+	// Select All books
 	private static final String SELECT_ALL_BOOKS = "select * from bookDetails ";
+	// Delete specific book
 	private static final String DELETE_BOOKS_SQL = "delete from bookDetails where name = ?;";
 
 // getConnection for connection to SQL db via JDBC 
@@ -78,6 +82,8 @@ public class BookServlet extends HttpServlet {
 		case "/BookServlet/delete":
 			deleteBook(request, response);
 			break;
+		case "/BookServlet/search":
+			searchBooks(request, response);
 		}
 	}
 	catch(SQLException ex)
@@ -181,6 +187,34 @@ public class BookServlet extends HttpServlet {
 		request.setAttribute("listBooks", books);
 		request.getRequestDispatcher("/bookManagement.jsp").forward(request, response);
 	}
+	
+// Search for books
+	private void searchBooks(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		// Initialize array to store all books retrieved
+		List<Book> books = new ArrayList<>(); 
+		
+		// Try/catch block to attempt connection and query database
+		try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(SELECT_BOOKS_BY_NAME);) {
+			Result rs = statement.executeQuery(); // Execute query
+			
+			// Assign the retrieved data to temporary variables to store incrementally into the books array.
+			while (rs.next()) {
+				String bookName = rs.getString("bookName");
+				String bookDesc = rs.getString("bookDesc");
+				String bookAuthor = rs.getString("bookAuthor");
+				int bookLikes = rs.getInt("bookLikes");
+				
+				books.add(Book(bookName, bookDesc, bookAuthor, bookLikes));
+			}
+		}
+		catch (SQLExeption e) {
+			System.out.println(e.getMessage()); // Print error message
+		}
+		// Send the data back to the requesting .jsp
+		request.setAttribute("searchBooks", books);
+		request.getRequestDispatcher("/bookManagement.jsp").forward(request, response)''
+	}
+	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
