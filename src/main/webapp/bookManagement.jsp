@@ -31,9 +31,9 @@
             <div class="container text-left">
                 <!-- Add new Book button redirects to the ???.jsp page -->
          <!-- Replace the register.jsp when the add new book jsp page is created -->
-         <a href="<%=request.getContextPath()%>/register.jsp" class="btn btn-success">Add New Book</a>
-         <a href="<%=request.getContextPath()%>/register.jsp" class="btn btn-primary">Sort by Ascending</a>
-         <a href="<%=request.getContextPath()%>/register.jsp" class="btn btn-primary">Sort by Descending</a>
+         <a href="<%=request.getContextPath()%>/CreateBook.jsp" class="btn btn-success">Add New Book</a>
+         <a href="<%=request.getContextPath()%>/BookServlet/Ascending" class="btn btn-primary">Sort by Ascending</a>
+         <a href="<%=request.getContextPath()%>/BookServlet/Descending" class="btn btn-primary">Sort by Descending</a>
             </div>
             <br>
             <!-- Create a table to list out all current book information -->

@@ -42,7 +42,9 @@ public class NewBook extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Create new book
+    	response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        
 
         // Book parameters from front-end form (params MUST match with form inputs name)
         String bn = request.getParameter("bookName"); // Book name
@@ -51,10 +53,10 @@ public class NewBook extends HttpServlet {
         int bl = 0; // Initial book likes is 0.
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdetails", "root", "password");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/booksdetails", "root", "password");
 
-            PreparedStatement ps = con.prepareStatement("INSERT into USERDETAILS values(?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into BOOKSDETAILS values(?,?,?,?)");
 
             ps.setString(1, bn); // Book name
             ps.setString(2, bd); // Book description
@@ -66,6 +68,7 @@ public class NewBook extends HttpServlet {
             if (i > 0) {
                 PrintWriter writer = response.getWriter();
                 writer.println("<h1>" + "You have successfully added a book. 80085 are cool!!!" + "</h1>");
+                response.sendDirect("http://localhost:8090/GroupProject/bookManagement.jsp")
                 writer.close();
             }
         } catch (Exception exception) {
