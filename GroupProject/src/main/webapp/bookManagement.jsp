@@ -15,7 +15,6 @@
 <body>
 	<div class="row">
 		<div class="container">
-		test
 			<h3 class="text-center">List of Books</h3>
 			<hr>
 			<div class="container text-left">
