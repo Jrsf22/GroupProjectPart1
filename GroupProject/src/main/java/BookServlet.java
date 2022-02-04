@@ -26,30 +26,29 @@ public class BookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 // List of variables used for database connections
-	private String jdbcURL = "jdbc:mysql://localhost:3306/bookdetails";
+	private String jdbcURL = "jdbc:mysql://localhost:3306/booksdetails";
 	private String jdbcUsername = "root";
 	private String jdbcPassword = "password";
 
 // List of SQL prepared statements to prepare CRUD operations to our database (add on as needed)
 	// Create new book
-	private static final String INSERT_BOOKS_SQL = "INSERT INTO bookDetails" 
-	+" (bookName, bookDesc, bookAuthor, bookLikes) VALUES " + " (?,?,?,?);";
+	private static final String INSERT_BOOKS_SQL = "INSERT INTO booksdetails" +" (bookName, bookDesc, bookAuthor, bookLikes) VALUES " + " (?,?,?,?);";
 	// Select book by name (used to show specific book)
-	private static final String SELECT_BOOK_BY_ID = "SELECT bookName, bookDesc, bookAuthor, bookLikes from bookDetails where bookName = ?;";
+	private static final String SELECT_BOOK_BY_ID = "SELECT bookName, bookDesc, bookAuthor, bookLikes from booksdetails where bookName = ?;";
 	// Select all books by that contains search input(used for search)
-	private static final String SELECT_BOOKS_BY_NAME = "SELECT * FROM bookDetails where bookName like %?%;";
+	private static final String SELECT_BOOKS_BY_NAME = "SELECT * FROM booksdetails where bookName like %?%;";
 	// Update book (including likes)
-	private static final String UPDATE_BOOKS_SQL = "UPDATE BookDetails set bookName = ?, bookDesc = ?, bookAuthor = ?, bookLikes = ? where bookName = ?;";
+	private static final String UPDATE_BOOKS_SQL = "UPDATE booksdetails set bookName = ?, bookDesc = ?, bookAuthor = ?, bookLikes = ? where bookName = ?;";
 	// Select All books
-	private static final String SELECT_ALL_BOOKS = "select * from bookDetails ";
+	private static final String SELECT_ALL_BOOKS = "select * from booksdetails ";
 	// Delete specific book
-	private static final String DELETE_BOOKS_SQL = "delete from bookDetails where name = ?;";
+	private static final String DELETE_BOOKS_SQL = "delete from booksdetails where name = ?;";
 	//Sort by Name Ascending
-	private static final String SELECT_ALL_BOOKS_ORDER_BY_bookName_ASC = "SELECT bookName, bookDesc, bookAuthor, bookLikes from BookDetails ORDER BY bookName ASC where bookName = ?;";
+	private static final String SELECT_ALL_BOOKS_ORDER_BY_bookName_ASC = "SELECT bookName, bookDesc, bookAuthor, bookLikes from booksdetails ORDER BY bookName ASC where bookName = ?;";
 	//Sort By Name Descending
-	private static final String SELECT_ALL_BOOKS_ORDER_BY_bookName_DESC = "SELECT bookName, bookDesc, bookAuthor, bookLikes from BookDetails ORDER BY bookName DESC where bookName = ?;";
+	private static final String SELECT_ALL_BOOKS_ORDER_BY_bookName_DESC = "SELECT bookName, bookDesc, bookAuthor, bookLikes from booksdetails ORDER BY bookName DESC where bookName = ?;";
 	//Sort By Likes
-	private static final String SELECT_ALL_BOOKS_ORDER_BY_bookLikes= "SELECT bookName, bookDesc, bookAuthor, bookLikes from BookDetails ORDER BY bookLikes DESC where bookName = ?;";
+	private static final String SELECT_ALL_BOOKS_ORDER_BY_bookLikes= "SELECT bookName, bookDesc, bookAuthor, bookLikes from booksdetails ORDER BY bookLikes DESC where bookName = ?;";
 
 
 // getConnection for connection to SQL db via JDBC 
@@ -91,6 +90,13 @@ public class BookServlet extends HttpServlet {
 			break;
 		case "/BookServlet/search":
 			searchBooks(request, response);
+			break;
+		case "/BookServlet/Ascending":
+			listBooksByNameAsc(request, response);
+			break;
+		case "/BookServlet/Descending":
+			listBooksByNameDesc(request, response);
+			break;
 		}
 	}
 	catch(SQLException ex)
@@ -153,7 +159,7 @@ public class BookServlet extends HttpServlet {
 			
 			int i = statement.executeUpdate();
 		}
-		response.sendRedirect("http://localhost:8090/HelloWorldJavaEE/BookServlet/dashboard"); // This part would be affected by the routing guy
+		response.sendRedirect("http://localhost:8090/BookServlet/dashboard"); // This part would be affected by the routing guy
 	}
 
 // Delete book from table according to book name
@@ -168,7 +174,7 @@ public class BookServlet extends HttpServlet {
 				
 				int i = statement.executeUpdate();
 	}
-		response.sendRedirect("http://localhost:8090/HelloWorldJavaEE/BookServlet/dashboard");
+		response.sendRedirect("http://localhost:8090/BookServlet/dashboard");
 	}
 
 // List all books 
@@ -316,9 +322,43 @@ public class BookServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+            throws ServletException, IOException {
+        // Create new book
+    	response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        
+
+        // Book parameters from front-end form (params MUST match with form inputs name)
+        String bn = request.getParameter("bookName"); // Book name
+        String bd = request.getParameter("bookDesc"); // Book description
+        String ba = request.getParameter("bookAuthor"); // Book author
+        int bl = 0; // Initial book likes is 0.
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/booksdetails", "root", "password");
+
+            PreparedStatement ps = con.prepareStatement("INSERT into booksdetails values(?,?,?,?)");
+
+            ps.setString(1, bn); // Book name
+            ps.setString(2, bd); // Book description
+            ps.setString(3, ba); // Book author
+            ps.setInt(4, bl); // Book likes
+
+            int i = ps.executeUpdate();
+
+            if (i > 0) {
+                PrintWriter writer = response.getWriter();
+                writer.println("<h1>" + "You have successfully added a book. 80085 are cool!!!" + "</h1>");
+                writer.close();
+            }
+        } catch (Exception exception) {
+            System.out.println(exception);
+            out.close();
+        }
+
+        // TODO Auto-generated method stub
+        doGet(request, response);
+    }
 
 }

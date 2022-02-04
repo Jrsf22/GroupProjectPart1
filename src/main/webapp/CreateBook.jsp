@@ -9,7 +9,7 @@
 <!-- Form for creating new book -->
 <body>
 
-    <form action="NewBook" method="POST">
+    <form action="NewBook" method="post">
         Book Name: <input type="text" name="bookName">
         Description: <input type="text" name="bookDesc">
         Author: <input type="text" name="bookAuthor">
