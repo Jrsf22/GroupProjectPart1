@@ -40,7 +40,10 @@ public class BookServlet extends HttpServlet {
 	private static final String UPDATE_BOOKS_SQL = "UPDATE BookDetails set bookName = ?, bookDesc = ?, bookAuthor = ?, bookLikes = ? where bookName = ?;";
 	private static final String SELECT_ALL_BOOKS = "select * from bookDetails ";
 	private static final String DELETE_BOOKS_SQL = "delete from bookDetails where name = ?;";
-
+	private static final String SELECT_ALL_BOOKS_ORDER_BY_bookName_ASC = "SELECT bookName, bookDesc, bookAuthor, bookLikes from BookDetails ORDER BY bookName ASC where bookName = ?;";
+	private static final String SELECT_ALL_BOOKS_ORDER_BY_bookName_DESC = "SELECT bookName, bookDesc, bookAuthor, bookLikes from BookDetails ORDER BY bookName DESC where bookName = ?;";
+	private static final String SELECT_ALL_BOOKS_ORDER_BY_bookLikes= "SELECT bookName, bookDesc, bookAuthor, bookLikes from BookDetails ORDER BY bookLikes DESC where bookName = ?;";
+	
 // getConnection for connection to SQL db via JDBC 
 	protected Connection getConnection() {
 		Connection connection = null;
@@ -181,6 +184,76 @@ public class BookServlet extends HttpServlet {
 		request.setAttribute("listBooks", books);
 		request.getRequestDispatcher("/bookManagement.jsp").forward(request, response);
 	}
+	private void listBooksByNameAsc(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException
+			{
+				List <Book> books = new ArrayList <>();
+				try (Connection connection = getConnection();
+						PreparedStatement statement = connection.prepareStatement(SELECT_ALL_BOOKS_ORDER_BY_bookName_ASC);) {
+					
+							ResultSet rs = statement.executeQuery();
+							
+							while (rs.next()) {
+								String bookName = rs.getString("bookName");
+								String bookDesc = rs.getString("bookDesc");
+								String bookAuthor = rs.getString("bookAuthor");
+								int bookLikes = rs.getInt("bookLikes");
+								books.add (Book(bookName, bookDesc, bookAuthor, bookLikes));
+							}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+				request.setAttribute("listBooks", books);
+				request.getRequestDispatcher("/bookManagement.jsp").forward(request, response);
+			}
+	
+	private void listBooksByNameDesc(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException
+			{
+				List <Book> books = new ArrayList <>();
+				try (Connection connection = getConnection();
+						PreparedStatement statement = connection.prepareStatement(SELECT_ALL_BOOKS_ORDER_BY_bookName_Desc);) {
+					
+							ResultSet rs = statement.executeQuery();
+							
+							while (rs.next()) {
+								String bookName = rs.getString("bookName");
+								String bookDesc = rs.getString("bookDesc");
+								String bookAuthor = rs.getString("bookAuthor");
+								int bookLikes = rs.getInt("bookLikes");
+								books.add (Book(bookName, bookDesc, bookAuthor, bookLikes));
+							}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+				request.setAttribute("listBooks", books);
+				request.getRequestDispatcher("/bookManagement.jsp").forward(request, response);
+			}
+	
+	private void listBooksByLikes(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException
+			{
+				List <Book> books = new ArrayList <>();
+				try (Connection connection = getConnection();
+						PreparedStatement statement = connection.prepareStatement(SELECT_ALL_BOOKS_ORDER_BY_bookLikes);) {
+					
+							ResultSet rs = statement.executeQuery();
+							
+							while (rs.next()) {
+								String bookName = rs.getString("bookName");
+								String bookDesc = rs.getString("bookDesc");
+								String bookAuthor = rs.getString("bookAuthor");
+								int bookLikes = rs.getInt("bookLikes");
+								books.add (Book(bookName, bookDesc, bookAuthor, bookLikes));
+							}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+				request.setAttribute("listBooks", books);
+				request.getRequestDispatcher("/bookManagement.jsp").forward(request, response);
+			}
+	
+	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
