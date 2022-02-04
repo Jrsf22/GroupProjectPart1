@@ -10,18 +10,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Book Management</title>
 </head>
 <body>
 	<div class="row">
 		<div class="container">
-		test
 			<h3 class="text-center">List of Books</h3>
+			<hr>
+			<section id="search" class= "text-center">
+			<header class="imgaeheader"></header>
+			<div class="container">
+			<form>
+			<label class= "card-title"> Search Book </label>
+			<input type="search" name="search">
+			<input type="submit" value="Search">
+			</form>
+			</div>
+			</section>
 			<hr>
 			<div class="container text-left">
 				<!-- Add new Book button redirects to the ???.jsp page -->
-		 <!-- Replace the register.jsp when the add new book jsp page is created --><a href="<%=request.getContextPath()%>/register.jsp"
-					class="btn btn-success">Add New Book</a>
+		 <!-- Replace the register.jsp when the add new book jsp page is created -->
+		 <a href="<%=request.getContextPath()%>/register.jsp" class="btn btn-success">Add New Book</a>
+		 <a href="<%=request.getContextPath()%>/register.jsp" class="btn btn-primary">Sort by Ascending</a>
+		 <a href="<%=request.getContextPath()%>/register.jsp" class="btn btn-primary">Sort by Descending</a>
 			</div>
 			<br>
 			<!-- Create a table to list out all current book information -->
@@ -46,8 +58,7 @@
 							<td><c:out value="${book.bookLikes}" /></td>
 							<!-- For each book in the database, Edit/Delete buttons which invokes the edit/delete functions -->
 							<td><a href="edit?name=<c:out value='${book.bookName}'/>">Edit</a>
-								&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href="delete?name=<c:out value='${book.bookName}' />">Delete</a></td>
+								&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?name=<c:out value='${book.bookName}' />">Delete</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
