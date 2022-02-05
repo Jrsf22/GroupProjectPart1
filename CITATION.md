@@ -5,7 +5,8 @@ authors:
 - name: "John Renber"
 - name: "Xavier Koh"
 - name: "Zayne "Dumb" Lee"
-title: "Salmon"
-version: 1.0.0
-date-released: 2022-01-30
-url: "https://github.com/DrBingoo/DevOpsProject"
+<br>
+title: "Salmon" <br>
+version: 1.0.0 <br>
+date-released: 2022-01-30 <br>
+url: "https://github.com/Jrsf22/GroupProjectPart1"
