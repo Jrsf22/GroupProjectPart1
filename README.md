@@ -11,3 +11,20 @@ bookManagement.jsp displays the books details from the db.
 CreateBook.jsp contains the modal form for creating a new book.
 
 web.XML file contains the routing for the different urls.
+
+## John
+Edited bookManagement.jsp.
+
+Created Search bar with a search button.
+
+Created Sort By Ascending, Sort By Descending as well as Sort By Likes.
+
+Edited BookServlet1.java doPost and listBooks when it wasn't working.
+
+Fixed some bugs for BookServlet1.java and NewBook.java.
+
+Created and edited pom.xml file
+
+
+
+
