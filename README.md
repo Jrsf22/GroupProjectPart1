@@ -1,4 +1,4 @@
-# GroupProjectPart1 (BookReviewWebsite)
+# GroupProjectPart1 (BookReviewWebsite™)
 ## Description of Project
 This is the group project part 1
 
