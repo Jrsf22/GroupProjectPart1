@@ -23,7 +23,13 @@ Edited BookServlet1.java doPost and listBooks when it wasn't working.
 
 Fixed some bugs for BookServlet1.java and NewBook.java.
 
-Created and edited pom.xml file
+Created and edited pom.xml file.
+
+## 𝒁𝒂𝒚𝒏𝒆 ![WIN_20200504_15_14_27_Pro](https://user-images.githubusercontent.com/85160539/152654209-9e187019-474a-4ce2-87da-f94de11853b5.jpg)
+> Created BookServlet1.java with basic structure and Book.java class object.
+> Coded Create and Update operations for BookServlet1.java on Book database.
+> Resolved merge conflicts manually in Visual Studio Code that arose when merging branches.
+😎
 
 
 
