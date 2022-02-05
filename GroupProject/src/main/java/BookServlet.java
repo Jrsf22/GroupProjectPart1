@@ -56,7 +56,7 @@ public class BookServlet extends HttpServlet {
 		Connection connection = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,6 +72,7 @@ public class BookServlet extends HttpServlet {
 	// Which will, depending on the request servlet path, determine the function to
 	// invoke using the switch statements.
 	String action = request.getServletPath();
+	
 	
 	try
 	{
@@ -97,6 +98,9 @@ public class BookServlet extends HttpServlet {
 		case "/BookServlet/Descending":
 			listBooksByNameDesc(request, response);
 			break;
+		case "/BookServlet/Likes":
+			listBooksByLikes(request, response);
+			break;
 		}
 	}
 	catch(SQLException ex)
@@ -105,7 +109,6 @@ public class BookServlet extends HttpServlet {
 	}
 	
 	// TODO Auto-generated method stub
-
 	response.getWriter().append("Served at: ").append(request.getContextPath());
 }
 
