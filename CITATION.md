@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-- name: "Javier 'noBitches' Yeo"
+- name: "Javier Yeo"
 - name: "John Renber"
 - name: "Xavier Koh"
-- name: "Zayne Lee"
+- name: "Zayne "Dumb" Lee"
 title: "Salmon"
 version: 1.0.0
 date-released: 2022-01-30
