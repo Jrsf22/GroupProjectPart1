@@ -4,7 +4,7 @@ authors:
 - name: "Javier Yeo"
 - name: "John Renber"
 - name: "Xavier Koh"
-- name: "Zayne "Dumb" Lee"
+- name: "Zayne Lee"
 <br>
 title: "Salmon" <br>
 version: 1.0.0 <br>
