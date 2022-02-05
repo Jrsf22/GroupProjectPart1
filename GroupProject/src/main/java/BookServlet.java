@@ -26,7 +26,7 @@ public class BookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 // List of variables used for database connections
-	private String jdbcURL = "jdbc:mysql://localhost:3306/booksdetails";
+	private String jdbcURL = "jdbc:mysql://localhost:3306/bookdb";
 	private String jdbcUsername = "root";
 	private String jdbcPassword = "password";
 
@@ -119,7 +119,7 @@ public class BookServlet extends HttpServlet {
 		// get parameter passed in the URL 
 		String bookName = request.getParameter("bookName");
 		
-		Book existingBook = new Book("","","",1);
+		Book existingBook = new Book("","","","");
 		
 		try (
 				Connection connection = getConnection(); 

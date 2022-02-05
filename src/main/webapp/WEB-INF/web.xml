@@ -23,6 +23,9 @@
 		<url-pattern>/BookServlet/edit</url-pattern>
 		<url-pattern>/BookServlet/update</url-pattern>
 		<url-pattern>/BookServlet/delete</url-pattern>
+		 <url-pattern>/BookServlet1/Descending</url-pattern>
+        <url-pattern>/BookServlet1/Search</url-pattern>
+        <url-pattern>/BookServlet1/Likes</url-pattern>
 	</servlet-mapping>
 	
 	
