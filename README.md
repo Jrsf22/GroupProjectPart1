@@ -30,13 +30,12 @@ This is the group project part 1
 
 - Edited web.XML file, added new url paths.
 
-### 𝒁𝒂𝒚𝒏𝒆 
+### 𝒁𝒂𝒚𝒏𝒆 😎
 <img src ="https://user-images.githubusercontent.com/85160539/152654454-13bacacd-9246-4455-9d5c-4d8a06bb8a36.jpg" width=25% height=25%>
 
 - Created BookServlet1.java with basic structure and Book.java class object.
 - Coded Create and Update operations for BookServlet1.java on Book database.
 - Resolved merge conflicts manually in Visual Studio Code that arose when merging branches.
-😎
 
 
 
