@@ -36,7 +36,7 @@ This is the group project part 1
 - Created BookServlet1.java with basic structure and Book.java class object.
 - Coded Create and Update operations for BookServlet1.java on Book database.
 - Coded Search function for BookServlet1.java to query specific books on Book database.
-- Resolved merge conflicts manually in Visual Studio Code that arose when merging branches.
+- Resolved merge conflicts manually in Visual Studio Code that arose when merging contributors' branches.
 - Fixed some bugs for general routing in web.xml, and CRUD operations in BookServlet1.java.
 
 
