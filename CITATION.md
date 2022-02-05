@@ -6,7 +6,7 @@ authors:
 - name: "Xavier Koh"
 - name: "Zayne Lee"
 <br>
-title: "Salmon" <br>
+title: "BookReviewWebsite™" <br>
 version: 1.0.0 <br>
 date-released: 2022-01-30 <br>
 url: "https://github.com/Jrsf22/GroupProjectPart1"
