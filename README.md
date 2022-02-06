@@ -1,5 +1,6 @@
 # GroupProjectPart1 (BookReviewWebsite™)
-![image](https://user-images.githubusercontent.com/85160539/152654805-c8defdff-a8be-4bcb-ab8e-4202b0f04d13.png)
+![image](https://user-images.githubusercontent.com/85160539/152671140-c65e65e9-6cf6-46cd-bfa1-2132296b7c25.png)
+
 
 ## Description of Project
 Insert description here
