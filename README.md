@@ -2,7 +2,7 @@
 ![image](https://user-images.githubusercontent.com/85160539/152654805-c8defdff-a8be-4bcb-ab8e-4202b0f04d13.png)
 
 ## Description of Project
-This is the group project part 1
+Insert description here
 
 ## Contributors and their respective contributions
 
